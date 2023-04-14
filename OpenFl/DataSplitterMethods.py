@@ -33,10 +33,13 @@ class AllEqualDataSplitter(NumPyDataSplitter):
 
             #Pick indices of data with class i
             idx_list = np.where(data[:, i] == 1)[0]
+
             #FInd the number of indices for each collaborator
             len_per_collaborator = (int(len(idx_list) / num_collaborators))
+
             #Find the total number of indices
             total_data_len = len_per_collaborator * num_collaborators
+
             #take the first total_data_len indices
             idx_list = idx_list[ : total_data_len]
             idx_list = idx_list.reshape(num_collaborators, len_per_collaborator)
@@ -44,8 +47,6 @@ class AllEqualDataSplitter(NumPyDataSplitter):
             idx_data = np.append(idx_data, idx_list, axis=1)
 
         idx_data = np.delete(idx_data, 0, 1)
-        print(idx_data)
-        print(idx_data.shape)
         return idx_data
 
 class LogNormalNumPyDataSplitter(NumPyDataSplitter):
@@ -168,6 +169,51 @@ class OneClassSplitter(NumPyDataSplitter):
         return idx
 
 
+class FourClassSplitter(NumPyDataSplitter):
+
+    def __init__(self, n_classes_per_collab, n_classes, num_collaborator):
+        self.name = "4 Class Splitter"
+        self.n_classes_per_collab = n_classes_per_collab
+        self.n_classes = n_classes
+        self.num_collaborator = num_collaborator
+
+    def split(self, data, num_collaborator):
+        label = 0
+        colab_to_class = [[] for i in range(self.num_collaborator)]
+        class_to_colab = [[] for i in range(self.n_classes)]
+
+        data = np.argmax(data, axis=1)
+
+        for colab_id, colab_list in enumerate(colab_to_class):
+            for i in range(self.n_classes_per_collab):
+                colab_list.append(label)
+                class_to_colab[label].append(colab_id)
+                label = (label + 1) % self.n_classes
+
+        final_idx = [[] for i in range(self.num_collaborator)]
+        for label in range(self.n_classes):
+            label_idx = np.nonzero(data == label).ravel()
+            ## Drops some indices
+            tlen = int(len(label_idx) / len(class_to_colab[label])) * len(class_to_colab[label])
+            label_idx = label_idx[ : tlen]
+            label_idx = label_idx.reshape(len(class_to_colab[label]), -1)
+
+            for i, colab_id in enumerate(class_to_colab[label]):
+                final_idx[colab_id].extend(label_idx[i, :].tolist())
+
+
+
+        label_matrix = np.array([np.array([data[idx] for idx in idx_list]) for idx_list in final_idx])
+        print([np.unique(label_mat) for label_mat in label_matrix])
+        return final_idx
+
+
+
+
+
+
+
+
 
 
 def SplitFunctionGenerator(splitter_name):
@@ -178,10 +224,12 @@ def SplitFunctionGenerator(splitter_name):
     elif splitter_name == "Equal-Equal-Split":
         return AllEqualDataSplitter()
     elif splitter_name == "2-Class-per-collab-Split":
-        return LogNormalNumPyDataSplitter(mu = 0, sigma = 2, num_classes = 5, classes_per_col = 2, min_samples_per_class = 350)
+        return FourClassSplitter(n_classes_per_collab = 2, n_classes = 5, num_collaborator = 5)
     elif splitter_name == "3-Class-per-collab-split":
-        return LogNormalNumPyDataSplitter(mu = 0, sigma = 2, num_classes = 5, classes_per_col = 3, min_samples_per_class = 350)
+        return FourClassSplitter(n_classes_per_collab = 3, n_classes = 5, num_collaborator = 5)
     elif splitter_name == "1-Class-per-collab-split":
-        return OneClassSplitter()
+        return FourClassSplitter(n_classes_per_collab = 1, n_classes = 5, num_collaborator = 5)
+    elif splitter_name == "4-Class-per-collab-split":
+        return FourClassSplitter(n_classes_per_collab = 4, n_classes = 5, num_collaborator = 5)
 
 
