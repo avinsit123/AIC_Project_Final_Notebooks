@@ -22,26 +22,25 @@ class AllEqualDataSplitter(NumPyDataSplitter):
 
         ## With assumption we have 5 classes
         num_classes = 5
-        idx_data = np.array(([[] for i in range(num_collaborators)]))
+        #Array for final indices of each collaborator
+        idx_data = np.zeros((5,1))
         for i in range(num_classes):
 
+            #Pick indices of data with class i
             idx_list = np.where(data[:, i] == 1)[0]
+            #FInd the number of indices for each collaborator
             len_per_collaborator = (int(len(idx_list) / num_collaborators))
+            #Find the total number of indices
             total_data_len = len_per_collaborator * num_collaborators
+            #take the first total_data_len indices
             idx_list = idx_list[ : total_data_len]
-            idx_new_data = np.zeros((num_collaborators, idx_data.shape[1] + len_per_collaborator))
-            if i != 0:
-                idx_new_data[:, :idx_data.shape[1]] = idx_data
+            idx_list = idx_list.reshape(num_collaborators, len_per_collaborator)
 
-            for j in range(num_collaborators):
-                idx_new_data[i, idx_data.shape[1]: ] = idx_list[j * len_per_collaborator: (j + 1) * len_per_collaborator]
+            idx_data = np.append(idx_data, idx_list, axis=1)
 
-            idx_data = idx_new_data
-
-        for i in range(num_collaborators):
-            print(len(idx_data[i]))
-            np.random.shuffle(idx_data[i])
-
+        idx_data = np.delete(idx_data, 0, 1)
+        print(idx_data)
+        print(idx_data.shape)
         return idx_data
 
 
