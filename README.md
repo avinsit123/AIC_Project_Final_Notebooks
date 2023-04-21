@@ -268,8 +268,10 @@ All values denote model accuracy on global validation set.
 ![Flower Comparision](imgs/FlowerCompare.png)
 ## Code
 
-### Dataset
-Download dataset from Kaggle: [Link](https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered/code) into the dataset folder.
+### OpenFL
+
+#### Dataset
+Download dataset from Kaggle: [Link](https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered) into the dataset folder.
 Perform Following operations in the main directory 
 
 ```terminal
@@ -278,7 +280,6 @@ unzip archive.zip
 cd gaussian_filtered_images/gaussian_filtered_images/
 ```
 
-### OpenFL
 All the OpenFL experiments can be running using <b>OpenFL-Diabetic-Demo-CustomDataDistributor</b> notebook
 In order to experiment on a particular data distribution use the data_splitter function.
 
@@ -329,3 +330,17 @@ In the notebook, you only need to change the string in the cell for data splitte
     <td>1-Class-per-collab-split</td>
   </tr>
 </table>
+
+### Flower
+
+<b> Note:</b> Google Colab and Google Drive are needed for executing the Diabetic Retinopathy experiments using the Flower federated learning framework. The environment choice is dictated by the memory requirements and installation dependencies.
+
+#### Dataset
+Download dataset from Kaggle: [Link](https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered) into an archive folder. Upload the archive folder to your Google Drive. The resulting file structure will be as follows:
+
+├── MyDrive
+│   ├── archive
+│   │   ├── gaussian_filtered_images
+│   │   │   ├── gaussian_filtered_images
+├── package-lock.json 
+└── .gitignore
