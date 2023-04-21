@@ -279,7 +279,7 @@ cd gaussian_filtered_images/gaussian_filtered_images/
 ```
 
 ### OpenFL
-All the OpenFL experiments can be running using <b>OpenFL-Diabetic-Demo-CustomDataDistributor<b> notebook
+All the OpenFL experiments can be running using <b>OpenFL-Diabetic-Demo-CustomDataDistributor</b> notebook
 In order to experiment on a particular data distribution use the data_splitter function.
 
 ```python
