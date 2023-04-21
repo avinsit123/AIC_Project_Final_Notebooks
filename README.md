@@ -5,7 +5,7 @@
 ## Introduction
 
 In this project, we aim to explore different federated learning approaches to train distributed models on private healthcare data. 
-We explore the federated learning setup for diabetic retinopathy area and delve deep into how particular distributions can affect the performance of our models
+We explore the federated learning setup for diabetic retinopathy area and delve deep into how different data distributions can affect the performance of our models
 
 ### Federated Learning
 
