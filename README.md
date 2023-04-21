@@ -333,9 +333,17 @@ In the notebook, you only need to change the string in the cell for data splitte
 
 ### Flower
 
-<b> Note:</b> Google Colab and Google Drive are needed for executing the Diabetic Retinopathy experiments using the Flower federated learning framework. The environment choice is dictated by the memory requirements and installation dependencies.
+<b> Note:</b> Google Colab and Google Drive are needed for executing the Diabetic Retinopathy experiments using the Flower federated learning framework. This environment choice is dictated by the memory requirements and installation dependencies.
 
 #### Dataset
 Download dataset from Kaggle: [Link](https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered) into an archive folder. Upload the archive folder to your Google Drive. The resulting file structure will be as follows:
 
 ![File Structure](imgs/FileStructure.png)
+
+#### Code Execution
+
+All data distribution experiments for Flower <b>FedAvg</b> aggregation strategy can be executed by running the <b> /Flower/Flower_Diabetic_Demo_Custom_Model_Fed_Avg_With_Images.ipynb </b> notebook.
+
+All data distribution experiments for Flower <b>FedProx</b> aggregation strategy can be executed by running the <b> /Flower/Flower_Diabetic_Demo_Custom_Model_Fed_Prox_With_Images.ipynb </b> notebook.
+
+All data distribution experiments for Flower <b>FedOpt</b> aggregation strategy can be executed by running the <b> /Flower/Flower_Diabetic_Demo_Custom_Model_Fed_Opt_With_Images.ipynb </b> notebook.
