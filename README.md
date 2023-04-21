@@ -1,6 +1,6 @@
 # RetinaFed: Exploring Novel Techniques for Predicting Diabetic Retinopathy through Federated Learning
 
-##### Group 15 Members: Avinash Swaminathan, Kanika Dhiman, Sagar Nandkumar Badlani, Shivam Agarwal  
+### Group 15 Members: Avinash Swaminathan, Kanika Dhiman, Sagar Nandkumar Badlani, Shivam Agarwal  
 
 ## Introduction
 
