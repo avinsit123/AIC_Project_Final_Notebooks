@@ -338,9 +338,4 @@ In the notebook, you only need to change the string in the cell for data splitte
 #### Dataset
 Download dataset from Kaggle: [Link](https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered) into an archive folder. Upload the archive folder to your Google Drive. The resulting file structure will be as follows:
 
-├── MyDrive
-│   ├── archive
-│   │   ├── gaussian_filtered_images
-│   │   │   ├── gaussian_filtered_images
-├── package-lock.json 
-└── .gitignore
+![File Structure](imgs/FileStructure.jpg)
