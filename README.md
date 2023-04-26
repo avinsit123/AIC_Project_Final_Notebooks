@@ -287,7 +287,7 @@ In order to experiment on a particular data distribution use the data_splitter f
 import DataSplitterMethods
 data_splitter = DataSplitterMethods.SplitFunctionGenerator("Equal-Equal-Split") #Use strings defined below to experiment on data distribution
 
-\\ Pass this data splitter to fl_data in the train_splitter argument
+# Pass this data splitter to fl_data in the train_splitter argument
 fl_data = FederatedDataSet(train_data, train_labels, test_data, test_labels, 
                            batch_size = batch_size , num_classes = num_classes, 
                            train_splitter=data_splitter)
